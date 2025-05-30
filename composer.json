@@ -1,0 +1,17 @@
+{
+    "name": "krei/todo-list",
+    "autoload": {
+        "psr-4": {
+            "MVC\\": "./",
+            "CONTROLLERS\\": "./app/controllers",
+            "MODELS\\": "./app/models"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ivan Guerrero",
+            "email": "ivangvprogrammer@gmail.com"
+        }
+    ],
+    "require": {}
+}

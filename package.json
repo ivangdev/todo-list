@@ -1,0 +1,9 @@
+{
+  "name": "todo-list",
+  "module": "index.js",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "gulp": "^5.0.0"
+  }
+}
