@@ -3,8 +3,8 @@
     "autoload": {
         "psr-4": {
             "MVC\\": "./",
-            "CONTROLLERS\\": "./app/controllers",
-            "MODELS\\": "./app/models"
+            "Controllers\\": "./app/controllers",
+            "Models\\": "./app/models"
         }
     },
     "authors": [
@@ -13,5 +13,8 @@
             "email": "ivangvprogrammer@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=8.0",
+        "vlucas/phpdotenv": "^5.6"
+    }
 }
