@@ -1,0 +1,51 @@
+@use 'variables' as v;
+
+// Mixin para pantallas pequeñas (Mobile)
+@mixin telefono {
+  @media (min-width: v.$telefono) {
+    @content;
+  }
+}
+
+// Mixin para pantallas de tabletas (Tablet)
+@mixin tablet {
+  @media (min-width: v.$tablet) {
+    @content;
+  }
+}
+
+// Mixin para pantallas de escritorio (Desktop)
+@mixin desktop {
+  @media (min-width: v.$desktop) {
+    @content;
+  }
+}
+
+// Mixin para pantallas extra grandes (XL Desktop)
+@mixin xl_desktop {
+  @media (min-width: v.$xl_desktop) {
+    @content;
+  }
+}
+
+/*
+  Mixin para crear un botón con estilos predeterminados
+  - $bgColor: Color de fondo del botón.
+  - $textColor: Color del texto del botón.
+*/
+
+@mixin boton($bgColor, $textColor) {
+  background-color: $bgColor;
+  padding: 1.5rem 4rem;
+}
+
+@mixin headings {
+  font-family: v.$fuente_principal;
+  font-weight: v.$black;
+  margin: 2rem 0;
+}
+
+@mixin contenedor-sm {
+  width: min(95%, 60rem);
+  margin: 0 auto;
+}

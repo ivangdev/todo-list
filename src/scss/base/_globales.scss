@@ -1,0 +1,42 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+/* 
+  Este bloque establece el tamaño base de fuente a 62.5% para facilitar los cálculos 
+  de rem (1rem = 10px) y configura el modelo de caja para todos los elementos 
+  para incluir padding y border en sus dimensiones totales.
+*/
+html {
+  font-size: 62.5%; // 1rem = 10px
+  box-sizing: border-box; // Todos los elementos incluyen padding y border en su ancho y alto
+  height: 100%;
+}
+
+/* 
+  Este bloque asegura que todos los elementos y sus pseudo-elementos 
+  hereden el modelo de caja establecido en el elemento html,
+  manteniendo consistencia en el layout de la página.
+*/
+*,
+*:before,
+*:after {
+  box-sizing: inherit; // Heredan el box-sizing del html
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family:'General Sans', sans-serif;;
+  font-size: 1.8rem; // 18px
+  background-color: v.$gris_muy_claro;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  ;
+}

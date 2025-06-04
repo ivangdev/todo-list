@@ -4,6 +4,9 @@ import gulpBabel from "gulp-babel";
 import gulpPlumber from "gulp-plumber";
 import { dest, src, watch, parallel } from "gulp";
 import terser from "gulp-terser";
+import postcss from "gulp-postcss";
+import autoprefixer from "autoprefixer";
+import concat from "gulp-concat";
 
 const sass = gulpSass(dartSass);
 
@@ -14,20 +17,24 @@ const paths = {
 };
 
 // Tarea para compilar SCSS a CSS
-export function css() {
+export function css(done) {
 	src(paths.scss, { sourcemaps: true })
 		.pipe(gulpPlumber())
 		.pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError))
-		.pipe(dest("public/dist/css"));
+		.pipe(postcss([autoprefixer()]))
+		.pipe(dest("public/dist/css", { sourcemaps: "." }))
+		.on("end", done);
 }
 
 // JS compilador
-export function js() {
+export function js(done) {
 	src(paths.js, { sourcemaps: true })
 		.pipe(gulpPlumber())
 		.pipe(gulpBabel({ presets: ["@babel/preset-env"] })) // Transpila el código JS
+		.pipe(concat("bundle.min.js"))
 		.pipe(terser())
-		.pipe(dest("public/dist/js"));
+		.pipe(dest("public/dist/js", { sourcemaps: "." }))
+		.on("end", done);
 }
 
 // Tarea para observar cambios en los archivos SCSS y JS

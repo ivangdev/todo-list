@@ -1,0 +1,37 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+@use 'sass:color';
+
+// Clase principal formulario
+.formulario {
+  display: flex;
+  flex-direction: column;
+
+  &__campo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+  }
+
+  // Label del campo
+  &__label {
+    display: block;
+    font-size: 1.8rem;
+    color: v.$gris_oscuro;
+    font-weight: v.$normal;
+  }
+
+  // Input del campo
+  &__input {
+    padding: 1rem;
+    border: 1px solid v.$gris_claro;
+    border-radius: .5rem;
+
+    &:focus {
+      outline: none;
+      border-color: color.adjust(v.$gris_claro, $lightness: -20%);
+    }
+  }
+}

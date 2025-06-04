@@ -1,0 +1,30 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.auth {
+  display: flex;
+  align-items: center; // Centra verticalmente a su hijo (.contenedor)
+  justify-content: center; // Centra horizontalmente a su hijo (.contenedor)
+  min-height: 100vh; // Asegura que ocupe toda la altura de la ventana
+  @include m.contenedor-sm; // Aplica el mixin para contenedor pequeño
+
+  &__contenedor {
+    background-color: v.$blanco;
+    padding: 3rem 3rem;
+    border: 1px solid v.$gris_claro;
+    border-radius: 1rem;
+  }
+
+  &__heading {
+    text-align: center;
+    color: v.$gris_pizarra;
+    margin: 0 1rem 1rem;
+  }
+
+  &__texto {
+    margin: 0 0 1rem 0;
+    color: v.$gris_silencioso;
+    text-align: center;
+    font-size: 1.6rem;
+  }
+}

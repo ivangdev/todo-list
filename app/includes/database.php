@@ -15,7 +15,7 @@ $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 // Intenta establecer la conexión a la base de datos utilizando PDO
 try {
   $pdo = new PDO($dsn, $user, $pass);
-  echo "Conexión exitosa a la base de datos $db en $host";
+  // echo "Conexión exitosa a la base de datos $db en $host";
 } catch (PDOException $event) {
   echo "Error al conectar a la base de datos: " . $event->getMessage();
   exit; // Termina la ejecución si hay un error de conexión

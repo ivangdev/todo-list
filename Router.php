@@ -5,8 +5,8 @@ namespace MVC;
 class Router
 {
 
-  public static $getRoutes = []; // Get para rutas
-  public static $postRoutes = []; // Post para rutas
+  public array $getRoutes = []; // Get para rutas
+  public array $postRoutes = []; // Post para rutas
 
   // Métodos estáticos para acceder a las rutas
   public function get($url, $fn)
@@ -53,12 +53,12 @@ class Router
     // __DIR__ es el directorio del archivo actual (Router.php).
     // Se asume que las vistas están en un directorio 'views' al mismo nivel que el directorio 'MVC'
     // Ejemplo: si Router.php está en 'app/MVC/Router.php', las vistas estarían en 'app/views/'
-    include_once __DIR__ . '/../views/' . $view . '.php';
+    include_once __DIR__ . "/app/views/$view.php";
 
     $contenido = ob_get_clean(); // Obtiene el contenido del búfer (la vista renderizada) y lo limpia
 
     // Incluye el layout principal. La variable $contenido estará disponible dentro de layout.php
     // Se asume que layout.php está en el mismo directorio de vistas.
-    include_once __DIR__ . '/../views/layout.php';
+    include_once __DIR__ . '/app/views/layout.php';
   }
 }

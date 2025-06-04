@@ -5,7 +5,6 @@ namespace Models;
 // Importamos las clases necesarias para manejar la base de datos
 use PDO;
 use PDOException;
-use PDOStatement;
 
 class ActiveRecord
 {

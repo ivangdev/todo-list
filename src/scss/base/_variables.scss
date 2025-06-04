@@ -1,0 +1,49 @@
+// Fuente letra
+$fuente_principal: 'General Sans', sans-serif;
+
+// media queries
+$telefono: 480px;
+$tablet: 768px;
+$desktop: 1024px;
+$xl_desktop: 1280px;
+
+// colores
+// Estructura - Fondos
+$gris: #F9FAFB; // Fondo principal
+$gris_muy_claro: #F3F4F6; // Fondo alternativo
+$gris_claro: #E5E7EB; // Bordes y divisiones
+$gris_medio: #4B5563; // Texto secundario
+$gris_oscuro: #111827; // Texto principal
+$gris_silencioso: #64748B; // Texto de metadatos
+$gris_pizarra: #0F172A; // Titulos principales
+
+// Estado Pendiente - Amarillos
+$amarillo_claro: #FEF3C7; // Fondo placa pendiente
+$amarillo_borde: #FDE68A; // Borde placa pendiente
+$amarillo_medio: #D97706; // Contador pendiente
+$amarillo_oscuro: #92400E; // Texto pendiente
+
+// Estado en Proceso - Azules
+$azul_claro: #DBEAFE; // Fondo placa en proceso
+$azul_borde: #BFDBFE; // Borde placa en proceso
+$azul_medio: #2563EB; // Contador en proceso
+$azul_oscuro: #1E40AF; // Texto en proceso
+
+// Estado Completado - Verdes
+$verde_claro: #DCFCE7; // Fondo placa completada
+$verde_borde: #BBF7D0; // Borde placa completada
+$verde_medio: #16A34A; // Contador completado
+$verde_oscuro: #166534; // Texto completado
+
+// Acciones destructivas - Rojos
+$rojo: #DC2626; // Botones eliminar y errores
+
+// Colores - Basicos
+$blanco: #FFFFFF;
+$negro: #000000;
+
+// Fuentes
+$delgada: 300;
+$normal: 400;
+$bold: 700;
+$black: 900;

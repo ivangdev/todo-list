@@ -1,0 +1,14 @@
+@use 'base/variables' as v;
+
+.acciones {
+  display: flex;
+  gap: 3rem;
+  justify-content: space-between;
+  margin-top: 3rem;
+
+  &__enlace {
+    color: v.$gris_oscuro;
+    font-size: 1.4rem;
+    font-weight: v.$delgada;;
+  }
+}
