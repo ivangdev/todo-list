@@ -15,7 +15,7 @@ class ActiveRecord
 
   protected static $alertas = [];
 
-  public $id; // Propiedad para almacenar el ID del registro
+  public ?int $id; // Propiedad para almacenar el ID del registro
   public $columnaDB; // Propiedad para almacenar las columnas de la base de datos
 
 
