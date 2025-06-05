@@ -9,6 +9,10 @@
   &__enlace {
     color: v.$gris_oscuro;
     font-size: 1.4rem;
-    font-weight: v.$delgada;;
+    font-weight: v.$delgada;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }

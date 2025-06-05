@@ -1,4 +1,5 @@
 @use 'variables' as v;
+@use 'sass:color';
 
 // Mixin para pantallas pequeñas (Mobile)
 @mixin telefono {
@@ -33,10 +34,24 @@
   - $bgColor: Color de fondo del botón.
   - $textColor: Color del texto del botón.
 */
-
 @mixin boton($bgColor, $textColor) {
   background-color: $bgColor;
-  padding: 1.5rem 4rem;
+  padding: 1.5rem 1rem;
+  color: $textColor;
+  font-size: 1.8rem;
+  border-radius: .5rem;
+  font-weight: v.$bold;
+  border: none;
+  transition-property: background-color;
+  transition-duration: .3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+
+  &:hover {
+    background-color: color.adjust($bgColor, $lightness: 20%);
+    cursor: pointer;
+  }
 }
 
 @mixin headings {

@@ -34,4 +34,9 @@
       border-color: color.adjust(v.$gris_claro, $lightness: -20%);
     }
   }
+
+
+  &__submit {
+    @include m.boton(v.$gris_oscuro, v.$blanco);
+  }
 }
