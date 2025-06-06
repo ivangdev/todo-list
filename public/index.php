@@ -16,5 +16,6 @@ $router->post('/login', [AuthController::class, 'logout']);
 
 // Registro
 $router->get('/registro', [AuthController::class, 'registro']);
+$router->post('/registro', [AuthController::class, 'registro']);
 
 $router->comprobarRutas(); // Comprueba las rutas y ejecuta la función correspondiente

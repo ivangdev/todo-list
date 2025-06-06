@@ -132,6 +132,58 @@ class ActiveRecord
     return $resultado;
   }
 
+  // Método para obtener un registro por su ID
+  public static function find(int $id)
+  {
+    try {
+      $query = "SELECT * FROM " . static::$tabla . " WHERE id = :id LIMIT 1";
+      $stmt = self::$db->prepare($query);
+      $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+      $datosParaEjecutar = ['id' => $id];
+      $resultado = $stmt->execute($datosParaEjecutar);
+
+      debuguear($resultado);
+
+      if ($resultado) {
+        return [
+          'resultado' => true,
+          'registro' => $resultado,
+        ];
+      } else {
+        return [
+          'resultado' => false,
+          'registro' => null
+        ];
+      }
+    } catch (PDOException $event) {
+      static::setAlertas('error', 'Error de base de datos al buscar por ID: ' . $event->getMessage());
+      return null; // Si ocurre un error, retornamos null
+    }
+  }
+
+  // Método para realizar una búsqueda con una condición específica en una columna
+  public static function where(string $columna, $valor)
+  {
+    try {
+      if (!in_array($columna, static::$columnasDB)) {
+        throw new \Exception("Columna '{$columna}' no válida en la tabla " . static::$tabla);
+      }
+
+      $query = "SELECT * FROM " . static::$tabla . " WHERE {$columna} = :valor LIMIT 1";
+      $stmt = self::$db->prepare($query);
+      $datosParaEjecutar = ['valor' => $valor];
+      $stmt->execute($datosParaEjecutar);
+      $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+      return [
+        'resultado' => true,
+        'registro' => $resultado,
+      ];
+    } catch (PDOException $event) {
+      static::setAlertas('error', 'Error de base de datos al buscar por columna: ' . $event->getMessage());
+      return null; // Si ocurre un error, retornamos null
+    }
+  }
+
   public function crear()
   {
     $atributos = $this->atributos();
@@ -152,7 +204,7 @@ class ActiveRecord
       }
 
       $resultado = $stmt->execute($datosParaEjecutar);
-
+      debuguear($resultado);
       if ($resultado) {
         $this->id = self::$db->lastInsertId();
         return [
@@ -178,14 +230,11 @@ class ActiveRecord
   public function actualizar()
   {
     $atributos = $this->atributos();
-
     $paresSetSql = []; // Array para almacenar los pares columna = valor para la consulta SQL
 
     foreach (array_keys($atributos) as $key) {
       $paresSetSql[] = "{$key} = :{$key}"; // Creamos los pares columna = valor para la consulta SQL
     }
-
-
 
     $query = "UPDATE " . static::$tabla . " SET " . join(', ', $paresSetSql);
     $query .= " WHERE id = :id_where"; // placeholder para el ID del registro a actualizar
