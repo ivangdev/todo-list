@@ -15,8 +15,8 @@
   }
 
   &__success {
-    background-color: color.adjust(v.$verde, $lightness: 40%);
-    border-left: .5rem solid v.$verde;
+    background-color: color.adjust(v.$verde_medio, $lightness: 40%);
+    border-left: .5rem solid v.$verde_medio;
     color: v.$verde_medio;
   }
 }
