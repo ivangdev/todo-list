@@ -47,7 +47,11 @@ class Email
     $contenido .= '</html>';
     $mail->Body = $contenido;
 
-    // Enviar el email
-    $mail->send();
+    try {
+      // Enviar el email
+      $mail->send();
+    } catch (\Exception $event) {
+      echo 'El mensaje no se pudo enviar. Error de Mailer: ' . $mail->ErrorInfo;
+    }
   }
 }

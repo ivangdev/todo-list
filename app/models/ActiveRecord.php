@@ -99,7 +99,7 @@ class ActiveRecord
   public function atributos()
   {
     $atributos = []; // Creamos un array para almacenar los atributos del objeto
-    foreach (static::$columnaDB as $columna) {
+    foreach (static::$columnasDB as $columna) {
       // Verificamos si la columna es 'id' para no incluirla en los atributos
       if ($columna === 'id') {
         continue; // Saltamos el ID ya que no se debe modificar
@@ -174,13 +174,13 @@ class ActiveRecord
       $datosParaEjecutar = ['valor' => $valor];
       $stmt->execute($datosParaEjecutar);
       $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-      return [
-        'resultado' => true,
-        'registro' => $resultado,
-      ];
+
+      if ($resultado) {
+        return static::crearObjeto($resultado); // Creamos un objeto a partir del resultado
+      }
     } catch (PDOException $event) {
       static::setAlertas('error', 'Error de base de datos al buscar por columna: ' . $event->getMessage());
-      return null; // Si ocurre un error, retornamos null
+      return false; // Si ocurre un error, retornamos null
     }
   }
 
@@ -204,7 +204,7 @@ class ActiveRecord
       }
 
       $resultado = $stmt->execute($datosParaEjecutar);
-      debuguear($resultado);
+      // debuguear($resultado);
       if ($resultado) {
         $this->id = self::$db->lastInsertId();
         return [
@@ -263,6 +263,16 @@ class ActiveRecord
     } catch (PDOException $event) {
       static::setAlertas('error', 'Error de base de datos al actualizar: ' . $event->getMessage());
       return false; // Si ocurre un error, retornamos false
+    }
+  }
+
+  // Método para sincronizar el objeto con la base de datos
+  public function sincronizar(array $args = [])
+  {
+    foreach ($args as $key => $value) {
+      if (property_exists($this, $key) && !is_null($value)) {
+        $this->$key = $value;
+      }
     }
   }
 

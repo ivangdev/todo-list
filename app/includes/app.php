@@ -8,7 +8,10 @@ require __DIR__ . '/../../vendor/autoload.php';
 
 // Si tu archivo .env está en el mismo directorio que este archivo (app/includes/.env)
 $dotenv = Dotenv::createImmutable(__DIR__); // Crea una instancia de Dotenv para cargar las variables de entorno
-$dotenv->load(); // Carga las variables de entorno desde el archivo .env
+$dotenv->safeLoad(); // Carga las variables de entorno desde el archivo .env
+
+// Funciones auxiliares
+require 'funciones.php';
 
 require 'database.php'; // Incluye el archivo de configuración de la base de datos
 

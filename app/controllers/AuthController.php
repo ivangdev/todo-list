@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Classes\Email;
 use Models\Usuario;
 use MVC\Router;
 
@@ -29,6 +30,7 @@ class AuthController
     $usuario = new Usuario();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $usuario->sincronizar($_POST);
       $alertas = $usuario->validar_cuenta();
 
       if (empty($alertas)) {
@@ -46,14 +48,22 @@ class AuthController
           // Generar un token
           $usuario->generarToken();
 
+          // debuguear($usuario);
           // Crear el usuario
           $resultado = $usuario->guardar();
 
           // Email de confirmacion
+          $email = new Email($usuario->email, $usuario->nombre, $usuario->token);
+          $email->enviarConfirmacion();
+
+          // if ($resultado) {
+          //   header('Location: /mensaje');
+          // }
         }
       }
     }
 
+    // Renderizar la vista de registro
     $router->render('auth/registro', [
       'titulo' => 'Crea tu cuenta en Todo List',
       'alertas' => $alertas,
