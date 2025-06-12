@@ -3,7 +3,7 @@
   <p class="auth__texto">Tu cuenta Todo List</p>
 
   <?php
-  require_once __DIR__ . '/app/views/templates/alertas.php';
+  require_once __DIR__ . '/../templates/alertas.php';
   ?>
 
   <?php if (isset($alertas['success'])): ?>

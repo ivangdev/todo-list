@@ -102,4 +102,13 @@ class AuthController
       'alertas' => Usuario::getAlertas()
     ]);
   }
+
+  // Método mensaje para mostrar un mensaje después de crear la cuenta
+  public static function mensaje(Router $router)
+  {
+    $router->render('auth/mensaje', [
+
+      'titulo' => 'Cuenta creada correctamente'
+    ]);
+  }
 }
