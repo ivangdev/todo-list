@@ -18,4 +18,17 @@ $router->post('/login', [AuthController::class, 'logout']);
 $router->get('/registro', [AuthController::class, 'registro']);
 $router->post('/registro', [AuthController::class, 'registro']);
 
+// Olvidé mi contraseña
+$router->get('/olvide', [AuthController::class, 'olvide']);
+$router->post('/olvide', [AuthController::class, 'olvide']);
+
+// Reestablecer contraseña
+$router->get('/reestablecer', [AuthController::class, 'reestablecer']);
+$router->post('/reestablecer', [AuthController::class, 'reestablecer']);
+
+// Confirmar cuenta
+// Mensaje de confirmación
+$router->get('/mensaje', [AuthController::class, 'mensaje']);
+$router->get('/confirmar', [AuthController::class, 'confirmar']);
+
 $router->comprobarRutas(); // Comprueba las rutas y ejecuta la función correspondiente
