@@ -29,6 +29,6 @@ $router->post('/reestablecer', [AuthController::class, 'reestablecer']);
 // Confirmar cuenta
 // Mensaje de confirmación
 $router->get('/mensaje', [AuthController::class, 'mensaje']);
-$router->get('/confirmar', [AuthController::class, 'confirmar']);
+$router->get('/confirmar-cuenta', [AuthController::class, 'confirmar']);
 
 $router->comprobarRutas(); // Comprueba las rutas y ejecuta la función correspondiente

@@ -56,9 +56,9 @@ class AuthController
           $email = new Email($usuario->email, $usuario->nombre, $usuario->token);
           $email->enviarConfirmacion();
 
-          // if ($resultado) {
-          //   header('Location: /mensaje');
-          // }
+          if ($resultado) {
+            header('Location: /mensaje');
+          }
         }
       }
     }
@@ -81,12 +81,15 @@ class AuthController
       header('Location: /');
     }
 
+    // Buscar el usuario por el token
+    $usuario = Usuario::where('token', $token);
+
     if (empty($usuario)) {
       // No existe el usuario con ese token
       Usuario::setAlertas('error', 'Token no válido, la cuenta no se confirmó');
     } else {
       // Confirmar el usuario
-      $usuario->confirmar();
+      $usuario->confirmado = 1;
       $usuario->token = '';
       unset($usuario->password2);
 
