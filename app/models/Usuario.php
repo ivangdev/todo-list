@@ -15,6 +15,8 @@ class Usuario extends ActiveRecord
   public string $password2;
   public $token;
   public $confirmado;
+  public string $password_actual;
+  public string $password_nuevo;
 
   // Constructor para inicializar las propiedades del usuario
   public function __construct(array $args = [])
@@ -72,6 +74,34 @@ class Usuario extends ActiveRecord
     }
     if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
       self::$alertas['error'][] = 'El Email no es válido';
+    }
+    return self::$alertas;
+  }
+
+  // Método para validar el password del usuario
+  public function validarPassword(): array
+  {
+    if (!$this->password) {
+      self::$alertas['error'][] = 'El Password es obligatorio';
+    } else {
+      if (strlen($this->password) < 6) {
+        self::$alertas['error'][] = 'El Password debe tener al menos 6 caracteres';
+      }
+    }
+    return self::$alertas;
+  }
+
+  // Método para nuevo password
+  public function nuevoPassword(): array
+  {
+    if (!$this->password_actual) {
+      self::$alertas['error'][] = 'El Password actual es obligatorio';
+    }
+    if (!$this->password_nuevo) {
+      self::$alertas['error'][] = 'El nuevo Password es obligatorio';
+    }
+    if (strlen($this->password_nuevo) < 6) {
+      self::$alertas['error'][] = 'El nuevo Password debe tener al menos 6 caracteres';
     }
     return self::$alertas;
   }
