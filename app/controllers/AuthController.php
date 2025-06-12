@@ -69,4 +69,37 @@ class AuthController
       'alertas' => $alertas,
     ]);
   }
+
+  // Metodo para confirmar la cuenta del usuario
+  public static function confirmar(Router $router)
+  {
+    // Obtener el token de la URL
+    $token = htmlspecialchars($_GET['token']);
+
+    // Redirigir si no hay token
+    if (!$token) {
+      header('Location: /');
+    }
+
+    if (empty($usuario)) {
+      // No existe el usuario con ese token
+      Usuario::setAlertas('error', 'Token no válido, la cuenta no se confirmó');
+    } else {
+      // Confirmar el usuario
+      $usuario->confirmar();
+      $usuario->token = '';
+      unset($usuario->password2);
+
+      // Guardar el usuario
+      $usuario->guardar();
+
+      Usuario::setAlertas('success', 'Cuenta confirmada correctamente');
+    }
+
+    // Renderizar la vista de confirmación
+    $router->render('auth/confirmar', [
+      'titulo' => 'Confirma tu cuenta en Todo List',
+      'alertas' => Usuario::getAlertas()
+    ]);
+  }
 }
