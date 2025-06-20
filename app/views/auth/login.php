@@ -3,6 +3,8 @@
     <h2 class="auth__heading"><?php echo $titulo; ?></h2>
     <p class="auth__texto">Ingresa a tu cuenta</p>
 
+    <?php require_once __DIR__ . '/../templates/alertas.php'; ?>
+
     <form class="formulario" action="/login" method="POST">
       <div class="formulario__campo">
         <label for="email" class="formulario__label">Email</label>

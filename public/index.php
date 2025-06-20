@@ -1,6 +1,7 @@
 <?php
+// iniciar sesión PHP
+// session_start();
 
-// 
 require_once __DIR__ . '/../app/includes/app.php'; // Incluye el archivo de configuración y funciones
 
 use Controllers\AuthController;
@@ -12,7 +13,7 @@ $router = new Router();
 // Login 
 $router->get('/login', [AuthController::class, 'login']);
 $router->post('/login', [AuthController::class, 'login']);
-$router->post('/login', [AuthController::class, 'logout']);
+$router->post('/logout', [AuthController::class, 'logout']);
 
 // Registro
 $router->get('/registro', [AuthController::class, 'registro']);
@@ -30,5 +31,8 @@ $router->post('/reestablecer', [AuthController::class, 'reestablecer']);
 // Mensaje de confirmación
 $router->get('/mensaje', [AuthController::class, 'mensaje']);
 $router->get('/confirmar-cuenta', [AuthController::class, 'confirmar']);
+
+// Ruta para tareas
+$router->get('/tareas', [AuthController::class, 'tareas']);
 
 $router->comprobarRutas(); // Comprueba las rutas y ejecuta la función correspondiente

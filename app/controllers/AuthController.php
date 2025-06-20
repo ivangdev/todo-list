@@ -13,10 +13,35 @@ class AuthController
     $alertas = [];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $usuario = new Usuario($_POST);
+      $alertas = $usuario->validarLogin();
+
       if (empty($alertas)) {
-        $existeUsuario = Usuario::where('email', $usuario->email);
+        // Se verifica si existe el usuario
+        $usuario = Usuario::where('email', $usuario->email);
+
+        if (!$usuario || !$usuario->confirmado) {
+          Usuario::setAlertas('error', 'El usuario no existe o no está confirmado');
+        } else {
+          // Si el usuario existe, se verifica el password
+          if (password_verify($_POST['password'], $usuario->password)) {
+            // Iniciar sesión
+            session_start();
+            $_SESSION['login'] = true; // Indica que el usuario ha iniciado sesión
+            $_SESSION['id'] = $usuario->id;
+            $_SESSION['nombre'] = $usuario->nombre;
+            $_SESSION['email'] = $usuario->email;
+
+            // Redirigir al usuario a su lista de tareas
+            header('Location: /tareas');
+          } else {
+            Usuario::setAlertas('error', 'El password es incorrecto');
+          }
+        }
       }
     }
+
+    $alertas = Usuario::getAlertas();
 
     $router->render('auth/login', [
       'titulo' => 'Iniciar Sesión',
