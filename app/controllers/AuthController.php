@@ -32,6 +32,7 @@ class AuthController
             $_SESSION['nombre'] = $usuario->nombre;
             $_SESSION['email'] = $usuario->email;
 
+            // debuguear($_SESSION);
             // Redirigir al usuario a su lista de tareas
             header('Location: /tareas');
           } else {

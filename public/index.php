@@ -5,6 +5,7 @@
 require_once __DIR__ . '/../app/includes/app.php'; // Incluye el archivo de configuración y funciones
 
 use Controllers\AuthController;
+use Controllers\TaskController;
 use MVC\Router; // Importa la clase Router para manejar las rutas
 
 // Crea una instancia del Router
@@ -33,6 +34,6 @@ $router->get('/mensaje', [AuthController::class, 'mensaje']);
 $router->get('/confirmar-cuenta', [AuthController::class, 'confirmar']);
 
 // Ruta para tareas
-$router->get('/tareas', [AuthController::class, 'tareas']);
+$router->get('/tareas', [TaskController::class, 'tareas']);
 
 $router->comprobarRutas(); // Comprueba las rutas y ejecuta la función correspondiente
